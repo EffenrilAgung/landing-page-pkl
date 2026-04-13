@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>KasirPro - Solusi Kasir Modern & Mudah</title>
+    <!-- Font Awesome 6 (Gratis) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Fonts: Inter & Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #fefefe;
+            color: #1A1F2C;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        /* variabel warna */
+        :root {
+            --primary: #2A7A62;
+            --primary-dark: #1E5E4A;
+            --primary-light: #E0F2ED;
+            --secondary: #FFB74D;
+            --accent: #F9A826;
+            --gray-light: #F8F9FC;
+            --gray-mid: #E9ECF3;
+            --text-dark: #1E293B;
+            --text-soft: #475569;
+            --white: #ffffff;
+            --shadow-sm: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.02);
+            --shadow-md: 0 20px 25px -12px rgba(0, 0, 0, 0.08);
+            --radius-xl: 2rem;
+            --radius-lg: 1.5rem;
+            --radius-md: 1rem;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* header */
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 0;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .logo i {
+            color: var(--primary);
+            font-size: 2rem;
+        }
+
+        .logo span {
+            background: linear-gradient(135deg, #2A7A62 0%, #1E5E4A 100%);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 500;
+            color: var(--text-dark);
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .btn-outline {
+            border: 1.5px solid var(--primary);
+            background: transparent;
+            padding: 0.5rem 1.2rem;
+            border-radius: 2rem;
+            font-weight: 600;
+            color: var(--primary);
+            transition: all 0.2s;
+        }
+
+        .btn-outline:hover {
+            background: var(--primary-light);
+            border-color: var(--primary-dark);
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            padding: 0.75rem 1.8rem;
+            border-radius: 2.5rem;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            box-shadow: 0 4px 8px rgba(42, 122, 98, 0.2);
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px -5px rgba(42, 122, 98, 0.3);
+        }
+
+        .btn-large {
+            padding: 1rem 2.2rem;
+            font-size: 1.1rem;
+        }
+
+        /* hero section */
+        .hero {
+            padding: 3rem 0 4rem 0;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .hero-content {
+            flex: 1.2;
+        }
+
+        .hero-badge {
+            background: var(--primary-light);
+            display: inline-block;
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-content h1 {
+            font-size: 3.2rem;
+            font-weight: 700;
+            line-height: 1.2;
+            font-family: 'Poppins', sans-serif;
+            margin-bottom: 1.2rem;
+            color: #0F2B25;
+        }
+
+        .hero-highlight {
+            color: var(--primary);
+            border-bottom: 3px solid var(--secondary);
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            color: var(--text-soft);
+            max-width: 90%;
+            margin-bottom: 2rem;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .stat-item h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--primary-dark);
+        }
+
+        .stat-item p {
+            font-size: 0.85rem;
+            color: #5A6E85;
+        }
+
+        .hero-image {
+            flex: 1;
+            background: linear-gradient(145deg, #EFFAF7, #ffffff);
+            border-radius: var(--radius-xl);
+            padding: 1rem;
+            box-shadow: var(--shadow-md);
+            text-align: center;
+        }
+
+        .hero-image img {
+            max-width: 100%;
+            border-radius: 1.5rem;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.1);
+        }
+
+        /* Placeholder karena kita tidak pakai gambar eksternal, kita buat ilustrasi via CSS + Fontawesome */
+        .mockup-screen {
+            background: #1E2A32;
+            border-radius: 2rem;
+            padding: 1rem 0.8rem 0.8rem 0.8rem;
+            box-shadow: 0 25px 40px -12px rgba(0,0,0,0.25);
+        }
+        .mockup-bar {
+            background: #F1F5F9;
+            border-radius: 1rem;
+            padding: 0.4rem 1rem;
+            display: flex;
+            gap: 0.4rem;
+            margin-bottom: 1rem;
+        }
+        .mockup-circle {
+            width: 12px;
+            height: 12px;
+            background: #FFB347;
+            border-radius: 50%;
+        }
+        .mockup-circle:nth-child(2){ background: #4CD964; }
+        .mockup-circle:nth-child(3){ background: #FF5A5A; }
+        .mockup-content {
+            background: white;
+            border-radius: 1rem;
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        .invoice-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.8rem;
+        }
+        .total-row {
+            border-top: 1px dashed #ccc;
+            padding-top: 0.5rem;
+            font-weight: bold;
+        }
+
+        /* Features */
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            font-family: 'Poppins', sans-serif;
+        }
+        .section-sub {
+            text-align: center;
+            color: var(--text-soft);
+            max-width: 650px;
+            margin: 0 auto 3rem auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin: 3rem 0;
+        }
+
+        .feature-card {
+            background: var(--white);
+            padding: 2rem 1.5rem;
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            transition: all 0.25s;
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+        .feature-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 30px -12px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary-light);
+        }
+        .feature-icon {
+            background: var(--primary-light);
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        .feature-icon i {
+            font-size: 2rem;
+            color: var(--primary);
+        }
+        .feature-card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 0.8rem;
+        }
+        .feature-card p {
+            color: var(--text-soft);
+        }
+
+        /* CTA / Pricing demo */
+        .cta-section {
+            background: linear-gradient(120deg, #1E5E4A 0%, #2A7A62 100%);
+            border-radius: var(--radius-xl);
+            padding: 3rem 2rem;
+            margin: 4rem 0;
+            text-align: center;
+            color: white;
+        }
+        .cta-section h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+        .cta-section p {
+            max-width: 600px;
+            margin: 0 auto 2rem auto;
+            opacity: 0.9;
+        }
+        .btn-white {
+            background: white;
+            color: var(--primary-dark);
+            padding: 0.9rem 2rem;
+            border-radius: 3rem;
+            font-weight: 700;
+            border: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: 0.2s;
+        }
+        .btn-white:hover {
+            transform: scale(1.02);
+            box-shadow: 0 12px 18px -8px rgba(0,0,0,0.2);
+        }
+
+        /* Testimoni sederhana */
+        .testimonials {
+            margin: 5rem 0;
+        }
+        .testi-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            justify-content: center;
+        }
+        .testi-card {
+            background: var(--gray-light);
+            padding: 2rem;
+            border-radius: var(--radius-md);
+            flex: 1;
+            min-width: 260px;
+            max-width: 350px;
+            transition: 0.2s;
+        }
+        .testi-card i.fa-quote-left {
+            color: var(--primary);
+            font-size: 1.8rem;
+            opacity: 0.6;
+            margin-bottom: 0.8rem;
+        }
+        .testi-text {
+            font-style: italic;
+            margin: 1rem 0;
+            color: #2D3A4B;
+        }
+        .testi-user {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-top: 1rem;
+        }
+        .testi-user img {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: var(--primary-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            color: var(--primary);
+        }
+        .user-placeholder {
+            background: #D9F0EA;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: var(--primary-dark);
+        }
+
+        /* Footer */
+        footer {
+            background: #0F2B25;
+            color: #CDE8E2;
+            padding: 3rem 0 2rem;
+            margin-top: 4rem;
+            border-radius: 2rem 2rem 0 0;
+        }
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+        .footer-brand p {
+            margin-top: 0.5rem;
+            max-width: 250px;
+        }
+        .footer-links {
+            display: flex;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+        .footer-links div a {
+            display: block;
+            color: #B4D4CC;
+            text-decoration: none;
+            margin: 0.5rem 0;
+            font-size: 0.9rem;
+        }
+        .footer-links div a:hover {
+            color: white;
+        }
+        .copyright {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #2C5A4E;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+            }
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 1rem;
+            }
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            .hero-desc {
+                max-width: 100%;
+            }
+            .hero-stats {
+                justify-content: space-between;
+            }
+            .section-title {
+                font-size: 1.8rem;
+            }
+            .cta-section h2 {
+                font-size: 1.6rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">
+                <i class="fas fa-cash-register"></i>
+                <span>KasirPro</span>
+            </div>
+            <div class="nav-links">
+                <a href="#">Beranda</a>
+                <a href="#">Fitur</a>
+                <a href="#">Harga</a>
+                <a href="#">Testimoni</a>
+                <a href="#" class="btn-outline">Login</a>
+                <a href="#" class="btn-primary" style="padding: 0.5rem 1.2rem;">Daftar Sekarang</a>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main>
+    <!-- Hero Section -->
+    <div class="container">
+        <div class="hero">
+            <div class="hero-content">
+                <span class="hero-badge"><i class="fas fa-bolt"></i>  #1 Pilihan UMKM & Retail</span>
+                <h1>Kelola Penjualan <br> <span class="hero-highlight">Lebih Cepat & Akurat</span></h1>
+                <p class="hero-desc">Aplikasi kasir online dan offline, transaksi mudah, laporan instan, dan stok otomatis. Mulai digitalkan bisnismu dalam hitungan menit.</p>
+                <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                    <a href="#" class="btn-primary btn-large"><i class="fab fa-google-play"></i> Coba Gratis</a>
+                    <a href="#" class="btn-outline" style="padding: 0.9rem 1.8rem;"><i class="fas fa-play"></i> Demo Interaktif</a>
+                </div>
+                <div class="hero-stats">
+                    <div class="stat-item"><h3>15K+</h3><p>Toko Bergabung</p></div>
+                    <div class="stat-item"><h3>98%</h3><p>Pelanggan Puas</p></div>
+                    <div class="stat-item"><h3>24/7</h3><p>Dukungan Support</p></div>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="mockup-screen">
+                    <div class="mockup-bar">
+                        <div class="mockup-circle"></div>
+                        <div class="mockup-circle"></div>
+                        <div class="mockup-circle"></div>
+                        <div style="flex:1; text-align:right; font-size:10px; color:#aaa;">KasirPro POS</div>
+                    </div>
+                    <div class="mockup-content">
+                        <div class="invoice-row"><span><i class="fas fa-mobile-alt"></i> Nasi Goreng</span><span>2 x Rp25.000</span><span>Rp50.000</span></div>
+                        <div class="invoice-row"><span><i class="fas fa-mug-hot"></i> Es Teh Manis</span><span>3 x Rp8.000</span><span>Rp24.000</span></div>
+                        <div class="invoice-row"><span><i class="fas fa-hamburger"></i> Burger Spesial</span><span>1 x Rp35.000</span><span>Rp35.000</span></div>
+                        <div class="total-row"><span>Total</span><span></span><span>Rp109.000</span></div>
+                        <div style="background:#2A7A62; color:white; text-align:center; border-radius:30px; padding:6px; font-size:12px;">Bayar <i class="fas fa-credit-card"></i></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Fitur Unggulan -->
+    <div class="container">
+        <div class="section-title">Fitur <span style="color:#2A7A62;">Andalan KasirPro</span></div>
+        <div class="section-sub">Semua yang Anda butuhkan untuk menjalankan bisnis ritel, F&B, atau toko modern dengan mudah.</div>
+        <div class="features-grid">
+            <div class="feature-card"><div class="feature-icon"><i class="fas fa-chart-line"></i></div><h3>Laporan Real-time</h3><p>Pantau pendapatan, produk terlaris, dan profit harian secara langsung dari dashboard.</p></div>
+            <div class="feature-card"><div class="feature-icon"><i class="fas fa-boxes"></i></div><h3>Manajemen Stok</h3><p>Peringatan stok menipis, scan barcode, dan kelola gudang dengan mudah.</p></div>
+            <div class="feature-card"><div class="feature-icon"><i class="fas fa-receipt"></i></div><h3>Invoice Digital</h3><p>Cetak nota thermal atau kirim struk via WhatsApp ke pelanggan otomatis.</p></div>
+            <div class="feature-card"><div class="feature-icon"><i class="fas fa-users"></i></div><h3>Multi Kasir & Role</h3><p>Kelola karyawan, akses terbatas, dan histori aktivitas setiap kasir.</p></div>
+            <div class="feature-card"><div class="feature-icon"><i class="fas fa-chart-pie"></i></div><h3>Analisa Bisnis</h3><p>Grafik penjualan, pelanggan terbaik, dan insight untuk strategi bisnis.</p></div>
+            <div class="feature-card"><div class="feature-icon"><i class="fas fa-cloud-upload-alt"></i></div><h3>Backup Otomatis</h3><p>Aman dengan cloud storage, data tidak akan hilang, akses di mana saja.</p></div>
+        </div>
+    </div>
+
+    <!-- CTA Kedua: download app -->
+    <div class="container">
+        <div class="cta-section">
+            <h2>Siap Tingkatkan Efisiensi Kasirmu?</h2>
+            <p>Download aplikasi KasirPro sekarang dan nikmati gratis 14 hari trial. Tanpa kartu kredit.</p>
+            <button class="btn-white"><i class="fab fa-apple"></i> App Store &nbsp;|&nbsp; <i class="fab fa-android"></i> Play Store</button>
+        </div>
+    </div>
+
+    <!-- Testimoni Pengguna -->
+    <div class="container testimonials">
+        <div class="section-title">Apa Kata <span style="color:#2A7A62;">Pengguna Bisnis</span></div>
+        <div class="section-sub">Ribuan pebisnis percaya KasirPro untuk operasional sehari-hari mereka.</div>
+        <div class="testi-grid">
+            <div class="testi-card">
+                <i class="fas fa-quote-left"></i>
+                <div class="testi-text">“Sejak pake KasirPro, rekapan penjualan harian jadi cepat dan tidak ada selisih stok. Aplikasi sangat user friendly!”</div>
+                <div class="testi-user">
+                    <div class="user-placeholder"><i class="fas fa-user"></i></div>
+                    <div><strong>Maya S.</strong><br>Owner Coffee & Co</div>
+                </div>
+            </div>
+            <div class="testi-card">
+                <i class="fas fa-quote-left"></i>
+                <div class="testi-text">“Laporan realtime membantu saya memonitor cabang toko dari rumah. Fitur multi-kasir sangat membantu operasional.”</div>
+                <div class="testi-user">
+                    <div class="user-placeholder"><i class="fas fa-store"></i></div>
+                    <div><strong>Rudi Hartono</strong><br>Distro & Fasion</div>
+                </div>
+            </div>
+            <div class="testi-card">
+                <i class="fas fa-quote-left"></i>
+                <div class="testi-text">“Integrasi dengan printer thermal dan notifikasi stok membuat kami tidak pernah kehabisan barang best seller. Rekomendasi!”</div>
+                <div class="testi-user">
+                    <div class="user-placeholder"><i class="fas fa-chart-simple"></i></div>
+                    <div><strong>Dewi Lestari</strong><br>Grosir Sembako</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-brand">
+                <div class="logo" style="color:white; justify-content: flex-start;"><i class="fas fa-cash-register"></i><span style="color:#F9E0A0;">KasirPro</span></div>
+                <p>Solusi kasir digital #1 di Indonesia. Dapatkan kemudahan bertransaksi dan kelola bisnis lebih cerdas.</p>
+            </div>
+            <div class="footer-links">
+                <div>
+                    <strong>Produk</strong>
+                    <a href="#">Fitur Lengkap</a>
+                    <a href="#">Harga</a>
+                    <a href="#">Kasir Online</a>
+                    <a href="#">Aplikasi Mobile</a>
+                </div>
+                <div>
+                    <strong>Perusahaan</strong>
+                    <a href="#">Tentang Kami</a>
+                    <a href="#">Karir</a>
+                    <a href="#">Blog</a>
+                    <a href="#">Kebijakan Privasi</a>
+                </div>
+                <div>
+                    <strong>Bantuan</strong>
+                    <a href="#">Pusat Bantuan</a>
+                    <a href="#">API Dokumentasi</a>
+                    <a href="#">Hubungi Kami</a>
+                    <a href="#">Komunitas</a>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            &copy; 2025 KasirPro - Aplikasi Kasir Modern. Semua hak dilindungi. <i class="fas fa-heart" style="color:#FFB74D;"></i> Untuk UMKM Indonesia.
+        </div>
+    </div>
+</footer>
+
+<!-- sedikit efek smooth scroll & tombol demo (opsional) -->
+<script>
+    // Smooth scroll hanya untuk demonstrasi jika ingin interaksi ringan
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const href = this.getAttribute('href');
+            if(href !== "#" && href !== "") {
+                const target = document.querySelector(href);
+                if(target) {
+                    e.preventDefault();
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+        });
+    });
+    // Pseudo tombol demo tambahan
+    console.log("LandingPage KasirPro siap digunakan");
+</script>
+</body>
+</html>
