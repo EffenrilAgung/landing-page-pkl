@@ -1,0 +1,669 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>MudaApotek - Software Apotek Terbaik & Mudah</title>
+    <!-- Google Fonts: Inter & Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 (free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #ffffff;
+            color: #1a2c3e;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        h1, h2, h3, h4, .logo, .nav-links a, .btn, .price, .package-name {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* navbar */
+        .navbar {
+            position: sticky;
+            top: 0;
+            background: rgba(255,255,255,0.96);
+            backdrop-filter: blur(8px);
+            box-shadow: 0 2px 20px rgba(0,0,0,0.03);
+            z-index: 100;
+            padding: 16px 0;
+        }
+
+        .nav-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #1d6fa4, #38bdf8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            letter-spacing: -0.5px;
+        }
+
+        .logo span {
+            background: none;
+            color: #1d6fa4;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #1f3b4c;
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+
+        .btn-outline-light {
+            background: transparent;
+            border: 1.5px solid #2563eb;
+            padding: 8px 20px;
+            border-radius: 40px;
+            font-weight: 600;
+            color: #2563eb;
+        }
+
+        .btn-outline-light:hover {
+            background: #2563eb10;
+        }
+
+        /* buttons */
+        .btn-primary {
+            background: #2563eb;
+            color: white;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: 0.2s;
+            display: inline-block;
+            text-decoration: none;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: white;
+            border: 1px solid #cbd5e1;
+            padding: 12px 28px;
+            border-radius: 40px;
+            font-weight: 600;
+            color: #1e293b;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .btn-secondary:hover {
+            border-color: #2563eb;
+            color: #2563eb;
+        }
+
+        /* hero */
+        .hero {
+            padding: 60px 0 40px;
+            background: linear-gradient(145deg, #f0f7ff 0%, #dbeafe 100%);
+        }
+
+        .hero-grid {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero-badge {
+            background: #bfdbfe;
+            color: #1e40af;
+            padding: 6px 16px;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            display: inline-block;
+            margin-bottom: 24px;
+        }
+
+        .hero-content h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: #0f2c39;
+        }
+
+        .hero-highlight {
+            color: #2563eb;
+        }
+
+        .hero-desc {
+            font-size: 1.1rem;
+            color: #334155;
+            max-width: 550px;
+            margin-bottom: 32px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+
+        .stats {
+            display: flex;
+            gap: 32px;
+            margin-top: 40px;
+        }
+
+        .stat-item h3 {
+            font-size: 2rem;
+            font-weight: 800;
+            color: #1d6fa4;
+        }
+
+        /* section */
+        section {
+            padding: 70px 0;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+
+        .section-sub {
+            text-align: center;
+            color: #475569;
+            max-width: 700px;
+            margin: 0 auto 48px;
+        }
+
+        /* misi card */
+        .misi-box {
+            background: #dbeafe;
+            border-radius: 48px;
+            padding: 48px 32px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .misi-box p {
+            font-size: 1.7rem;
+            font-weight: 600;
+            color: #1e3a5f;
+        }
+
+        /* layanan cards */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+            margin-top: 20px;
+        }
+
+        .service-card {
+            background: white;
+            border-radius: 32px;
+            padding: 32px 24px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.04);
+            transition: all 0.25s ease;
+            border: 1px solid #e2e8f0;
+            text-align: center;
+        }
+
+        .service-card i {
+            font-size: 2.8rem;
+            color: #2563eb;
+            margin-bottom: 20px;
+        }
+
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 12px;
+        }
+
+        /* fitur grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 24px;
+            background: #f8fafc;
+            padding: 40px;
+            border-radius: 48px;
+        }
+
+        .feature-item {
+            text-align: center;
+            font-weight: 500;
+            background: white;
+            padding: 16px;
+            border-radius: 60px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+
+        /* testimoni */
+        .testimoni-card {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #f0f7ff;
+            padding: 40px;
+            border-radius: 48px;
+            border-left: 6px solid #2563eb;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.02);
+        }
+
+        .testimoni-text {
+            font-size: 1.2rem;
+            font-style: italic;
+            color: #1e2a3a;
+            margin-bottom: 20px;
+        }
+
+        .testimoni-author {
+            font-weight: 700;
+            font-size: 1.1rem;
+        }
+
+        .testimoni-clinic {
+            color: #5b6e8c;
+        }
+
+        /* pricing */
+        .pricing-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 32px;
+            margin-top: 20px;
+        }
+
+        .price-card {
+            background: white;
+            border-radius: 40px;
+            padding: 32px 28px;
+            flex: 1;
+            min-width: 280px;
+            box-shadow: 0 20px 35px -12px rgba(0,0,0,0.08);
+            transition: 0.2s;
+            border: 1px solid #e2edf2;
+        }
+
+        .price-card.popular {
+            border: 2px solid #2563eb;
+            position: relative;
+            background: #ffffff;
+        }
+
+        .popular-badge {
+            background: #2563eb;
+            color: white;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            position: absolute;
+            top: -15px;
+            left: 30px;
+        }
+
+        .price {
+            font-size: 2.2rem;
+            font-weight: 800;
+            margin: 20px 0 8px;
+        }
+
+        .price small {
+            font-size: 1rem;
+            font-weight: 400;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: #94a3b8;
+            font-size: 0.9rem;
+        }
+
+        .price-daily {
+            font-size: 0.9rem;
+            color: #2563eb;
+            font-weight: 500;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin: 24px 0;
+        }
+
+        .feature-list li {
+            margin: 12px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .feature-list i.fa-check {
+            color: #2563eb;
+            width: 20px;
+        }
+
+        /* CTA */
+        .cta-demo {
+            background: linear-gradient(135deg, #1e3a8a, #2563eb);
+            border-radius: 48px;
+            text-align: center;
+            padding: 56px 24px;
+            color: white;
+        }
+
+        .cta-demo h2 {
+            font-size: 2rem;
+            margin-bottom: 16px;
+        }
+
+        .btn-white {
+            background: white;
+            color: #2563eb;
+            padding: 14px 38px;
+            border-radius: 40px;
+            font-weight: 700;
+            display: inline-block;
+            margin-top: 16px;
+            text-decoration: none;
+        }
+
+        /* FAQ */
+        .faq-grid {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            border-bottom: 1px solid #e2e8f0;
+            padding: 20px 0;
+        }
+
+        .faq-question {
+            font-weight: 700;
+            font-size: 1.1rem;
+            display: flex;
+            justify-content: space-between;
+            cursor: pointer;
+        }
+
+        .faq-answer {
+            display: none;
+            padding-top: 12px;
+            color: #334155;
+        }
+
+        .faq-answer.show {
+            display: block;
+        }
+
+        footer {
+            background: #1e3a8a;
+            color: #cbd5e1;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.2rem;
+            }
+            .nav-links {
+                gap: 18px;
+            }
+            .misi-box p {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-flex">
+            <div class="logo">Muda<span>Apotek</span></div>
+            <div class="nav-links">
+                <a href="#">Beranda</a>
+                <a href="#fitur">Fitur</a>
+                <a href="#paket">Paket</a>
+                <a href="#testimoni">Testimoni</a>
+                <a href="#demo" class="btn-outline-light">Demo Gratis</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <div class="hero-badge"><i class="fas fa-store"></i> 1000+ Mitra Berlangganan</div>
+                <h1>Kelola Apotek Jadi <span class="hero-highlight">Mudah</span>,<br>Pelayanan <span class="hero-highlight">Maksimal</span></h1>
+                <p class="hero-desc">Aplikasi apotek all-in-one: penjualan, stok, keuangan, multi-channel. #GaPakeRibet & bisnis makin tumbuh.</p>
+                <div class="hero-buttons">
+                    <a href="#demo" class="btn-primary">Coba Gratis 14 Hari <i class="fas fa-arrow-right"></i></a>
+                    <a href="#paket" class="btn-secondary">Lihat Paket</a>
+                </div>
+                <div class="stats">
+                    <div class="stat-item"><h3>1000+</h3><span>Mitra Aktif</span></div>
+                    <div class="stat-item"><h3>24/7</h3><span>Support Handal</span></div>
+                    <div class="stat-item"><h3>⭐4.9</h3><span>Kepuasan Mitra</span></div>
+                </div>
+            </div>
+            <div style="flex:1; text-align:center;">
+                <img src="https://images.unsplash.com/photo-1587854692152-cbe660dbde88?w=600&q=80" alt="Gambar Apotek" style="max-width:100%; border-radius: 40px; box-shadow: 0 20px 40px rgba(37,99,235,0.15);">
+            </div>
+        </div>
+    </section>
+
+    <!-- Misi -->
+    <div class="container">
+        <div class="misi-box">
+            <p>✨ Digitalisasi Bisnis Anda — Kelola apotek jadi mudah, pelayanan maksimal, bisnis makin tumbuh bersama MudaApotek. #GaPakeRibet ✨</p>
+        </div>
+    </div>
+
+    <!-- Layanan / Produk Unggulan -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Produk & Layanan</h2>
+            <div class="services-grid">
+                <div class="service-card"><i class="fas fa-laptop-code"></i><h3>Aplikasi Web & Mobile</h3><p>Akses dari komputer, laptop, tablet, smartphone. Semua perangkat didukung penuh.</p></div>
+                <div class="service-card"><i class="fas fa-chalkboard-user"></i><h3>Sistem Terintegrasi</h3><p>Offline, marketplace, WhatsApp, dan web apotek online milik Anda sendiri.</p></div>
+                <div class="service-card"><i class="fas fa-headset"></i><h3>Tim Support Handal</h3><p>Kami adalah mitra bisnis Anda. Bantuan cepat, tepat, dan ramah.</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fitur Unggulan -->
+    <section id="fitur" style="background: #f0f7ff;">
+        <div class="container">
+            <h2 class="section-title">Fitur Lengkap & Handal</h2>
+            <div class="features-grid">
+                <div class="feature-item"><i class="fas fa-cash-register"></i> Kasir/Penjualan</div>
+                <div class="feature-item"><i class="fas fa-truck"></i> Pembelian</div>
+                <div class="feature-item"><i class="fas fa-handshake"></i> Konsinyasi</div>
+                <div class="feature-item"><i class="fas fa-file-invoice-dollar"></i> Piutang/Utang</div>
+                <div class="feature-item"><i class="fas fa-chart-line"></i> Biaya Operasional</div>
+                <div class="feature-item"><i class="fas fa-undo-alt"></i> Retur Penjualan</div>
+                <div class="feature-item"><i class="fas fa-boxes"></i> Manajemen Stok & Minus</div>
+                <div class="feature-item"><i class="fas fa-chart-pie"></i> Analisis Pareto</div>
+            </div>
+            <p style="text-align: center; margin-top: 30px; font-weight: 500;">✨ Tidak perlu software lainnya! Semua dalam satu aplikasi ✨</p>
+        </div>
+    </section>
+
+    <!-- Testimoni -->
+    <section id="testimoni">
+        <div class="container">
+            <h2 class="section-title">Bagaimana Pengalaman Mitra?</h2>
+            <div class="testimoni-card">
+                <i class="fas fa-quote-left" style="font-size: 2rem; color: #2563eb; opacity: 0.5; margin-bottom: 12px; display: block;"></i>
+                <p class="testimoni-text">“Aplikasi apotek terbaik yang saya gunakan. Sudah melewati hecticnya nyari aplikasi agar bisa mantau darimana saja dan sangat jatuh hati ke MudaApotek 😍 Keuntungannya banyak sekali. Mulai dari bisa di akses dari beberapa perangkat, update fitur sesuai kebutuhan, penginputan faktur mudah dengan analisis harga, pelacakan barang minus sangat mudah. Pokoknya aplikasi terbaikk 👍”</p>
+                <div class="testimoni-author">Muthmainnah</div>
+                <div class="testimoni-clinic">Apotek Sejahtera Medika</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Paket Berlangganan -->
+    <section id="paket" style="background: #f8fafc;">
+        <div class="container">
+            <h2 class="section-title">Paket Berlangganan</h2>
+            <p class="section-sub">Investasi minimal untuk keuntungan maksimal bisnis Anda</p>
+            <div class="pricing-grid">
+                <!-- Paket Starter -->
+                <div class="price-card">
+                    <h3 class="package-name">Starter</h3>
+                    <div class="price">Rp <span style="font-size:2.5rem;">1.836.000</span> <small>/tahun</small></div>
+                    <div class="old-price">Rp 2.160.000</div>
+                    <div class="price-daily">Hemat 15% ~ Rp 5.100/hari</div>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Aplikasi Web, Android, iOS</li>
+                        <li><i class="fas fa-check"></i> Unlimited Device</li>
+                        <li><i class="fas fa-check"></i> Maks 2 Akun Pengguna</li>
+                        <li><i class="fas fa-check"></i> 1 Gudang & 2000 Produk</li>
+                        <li><i class="fas fa-check"></i> Website Bisnis & Jualan Online</li>
+                        <li><i class="fas fa-check"></i> Laporan Lengkap + Gratis Training</li>
+                        <li><i class="fas fa-check"></i> Full Support 24 Jam</li>
+                    </ul>
+                    <a href="#demo" class="btn-primary" style="width:100%; text-align: center;">Pilih Paket</a>
+                </div>
+                <!-- Premium POPULAR -->
+                <div class="price-card popular">
+                    <div class="popular-badge">⭐ POPULAR ⭐</div>
+                    <h3>Premium</h3>
+                    <div class="price">Rp <span style="font-size:2.5rem;">2.880.000</span> <small>/tahun</small></div>
+                    <div class="old-price">Rp 3.600.000</div>
+                    <div class="price-daily">Hemat 20% ~ Rp 8.000/hari</div>
+                    <ul class="feature-list">
+                        <li><i class="fas fa-check"></i> Semua Benefit Starter</li>
+                        <li><i class="fas fa-check"></i> Unlimited Akun & Gudang</li>
+                        <li><i class="fas fa-check"></i> Unlimited Produk & Pelanggan</li>
+                        <li><i class="fas fa-check"></i> Keuangan Lengkap + Analisis Pareto</li>
+                        <li><i class="fas fa-check"></i> Rekomendasi Pembelian</li>
+                        <li><i class="fas fa-check"></i> Pelayanan Medis & Manajemen Shift Anti Bocor</li>
+                    </ul>
+                    <a href="#demo" class="btn-primary" style="width:100%; background:#1d4ed8;">Pilih Premium</a>
+                </div>
+            </div>
+            <p style="text-align:center; margin-top: 32px;">💰 Juga tersedia paket 1, 2, dan 3 bulan sesuai kebutuhan. Hubungi kami!</p>
+        </div>
+    </section>
+
+    <!-- CTA Demo -->
+    <div class="container" id="demo">
+        <div class="cta-demo">
+            <h2>Ingin tanya-tanya & ngobrol lebih lanjut?</h2>
+            <p style="font-size:1.2rem; margin: 16px 0;">Agendakan Demo Gratis bersama tim MudaApotek, rasakan kemudahan fitur 14 hari penuh.</p>
+            <a href="#" class="btn-white">📅 Jadwalkan Demo Sekarang <i class="fas fa-calendar-alt"></i></a>
+        </div>
+    </div>
+
+    <!-- FAQ Section -->
+    <section>
+        <div class="container">
+            <h2 class="section-title">Pertanyaan Umum (FAQ)</h2>
+            <div class="faq-grid">
+                <div class="faq-item">
+                    <div class="faq-question">Apa itu Apotek Digital? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">MudaApotek adalah aplikasi manajemen apotek & toko obat dengan fitur super lengkap: keuangan, kasir, stok, pengadaan, database. Mari #MajuBersamaMudaApotek.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Mengapa harus menggunakan Apotek Digital? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">Didesain khusus untuk apotek & toko obat, lebih mudah, efektif, efisien, dapat dipantau kapan pun dengan harga langganan kompetitif.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Bagaimana cara mencoba fitur secara gratis? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">Kunjungi website, daftar, dan nikmati semua fitur GRATIS 14 hari. Tim sales akan menghubungi untuk kelanjutan layanan.</div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">Bisa diakses dari smartphone Android/iOS? <i class="fas fa-chevron-down"></i></div>
+                    <div class="faq-answer">Tentu! Tersedia Web App yang responsif di semua browser, serta tampilan disesuaikan untuk setiap perangkat.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <div class="logo" style="color:white; margin-bottom: 16px;">Muda<span style="color:#93c5fd;">Apotek</span></div>
+            <p style="margin-bottom: 12px;">© 2025 MudaApotek — Solusi software apotek terbaik #GaPakeRibet</p>
+            <p><i class="fas fa-envelope"></i> hello@mudaapotek.com | <i class="fab fa-whatsapp"></i> +62 812 3456 7890</p>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Toggle
+        const faqItems = document.querySelectorAll('.faq-item');
+        faqItems.forEach(item => {
+            const questionDiv = item.querySelector('.faq-question');
+            const answerDiv = item.querySelector('.faq-answer');
+            questionDiv.addEventListener('click', () => {
+                answerDiv.classList.toggle('show');
+                const icon = questionDiv.querySelector('i');
+                if(answerDiv.classList.contains('show')) {
+                    icon.classList.remove('fa-chevron-down');
+                    icon.classList.add('fa-chevron-up');
+                } else {
+                    icon.classList.remove('fa-chevron-up');
+                    icon.classList.add('fa-chevron-down');
+                }
+            });
+        });
+        // Smooth scroll untuk anchor
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if(targetId === "#") return;
+                const targetEl = document.querySelector(targetId);
+                if(targetEl) {
+                    e.preventDefault();
+                    targetEl.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
